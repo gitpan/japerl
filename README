@@ -1,0 +1,38 @@
+NAME
+
+  japerl - JPerl-again Perl (glocalization scripting environment)
+
+SYNOPSIS
+
+  japerl script.pl argv1 argv2 ...
+
+DESCRIPTION
+
+  japerl provides glocalization script environment on both modern Perl
+  and traditional Perl by using Sjis software family.
+
+  This software is useful also for
+  - if you ain't a system administrator
+  - if you want to use a perl of perls
+  - if you want to manage versions of library
+  - if you want to share library with perls
+
+INSTALLATION
+
+  1. Install a member of Sjis software family.
+  2. Copy japerl.bat and japerl.bat.conf to any directory.
+  3. Customize japerl.bat.conf.
+
+SEE ALSO
+
+  Glocalization - Wikipedia
+  http://en.wikipedia.org/wiki/Glocalization
+
+  JPerl - Japanized Perl or Japanese Perl
+  http://www.cpan.org/authors/id/W/WA/WATANABE/
+
+  Sjis software family - CPAN
+  http://search.cpan.org/~ina/
+
+  BackPAN - A Complete History of CPAN
+  http://backpan.perl.org/authors/id/I/IN/INA/
