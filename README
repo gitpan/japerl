@@ -4,7 +4,7 @@ NAME
 
 SYNOPSIS
 
-  japerl script.pl argv1 argv2 ...
+  japerl [switches] [--] [script.pl] [arguments]
 
 DESCRIPTION
 
@@ -32,6 +32,9 @@ SEE ALSO
   http://www.cpan.org/authors/id/W/WA/WATANABE/
 
   Sjis software family - CPAN
+  http://search.cpan.org/~ina/
+
+  Char - CPAN
   http://search.cpan.org/~ina/
 
   BackPAN - A Complete History of CPAN

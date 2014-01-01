@@ -17,27 +17,31 @@ undef @rem;
 #
 # japerl - JPerl-again Perl (glocalization scripting environment)
 #
-# Copyright (c) 2013 INABA Hitoshi <ina@cpan.org>
+# http://search.cpan.org/dist/japerl/
 #
+# Copyright (c) 2013, 2014 INABA Hitoshi <ina@cpan.org>
 ######################################################################
 $VERSION =
-$VERSION = sprintf '%d.%02d', q$Revision: 0.01 $ =~ /(\d+)/oxmsg;
+$VERSION = sprintf '%d.%02d', q$Revision: 0.02 $ =~ /(\d+)/oxmsg;
 
-use strict;
 use 5.00503;
+use strict;
+$^W = 1;
 
 # command-line parameter not found
 unless (@ARGV) {
-    die "@{[__FILE__]}: usage: $0 script.pl argv1 argv2 ...\n";
-}
-
-# script not found
-if (not -e $ARGV[0]) {
-    die "@{[__FILE__]}: $ARGV[0] not found.\n";
+    die "@{[__FILE__]}: usage: japerl [switches] [--] [script.pl] [arguments]\n";
 }
 
 # load configuration file
 %_ = %{ (do "$0.conf") || {} };
+$_{PERL5BIN} ||= ($0 =~ /perl(5[0-9]+)\.bat$/i) ? $ENV{"PERL${1}BIN"} : ($ENV{PERL5BIN} || $^X);
+$_{PERL5LIB} ||= $_{PERLLIB};
+
+# set environment variable
+for (grep ! /^(PERL5BIN|PERL5LIB|PERLLIB|ENCODING)$/, keys %_) {
+    $ENV{$_} = ($_{$_} || '');
+}
 
 # rewrite environment variable PATH
 if ($_{PERL5BIN} ne $^X) {
@@ -49,8 +53,23 @@ if ($_{PERL5BIN} ne $^X) {
             split $Config::Config{path_sep}, $ENV{PATH};
 }
 
+# get command-line switches
+while ($ARGV[0] =~ /^-/) {
+    if ($ARGV[0] eq '--') {
+        push @_, shift @ARGV;
+        last;
+    }
+    elsif ($ARGV[0] =~ /[eEI]$/) {
+        push @_, shift @ARGV;
+        push @_, shift @ARGV;
+    }
+    else {
+        push @_, shift @ARGV;
+    }
+}
+
 # use source filter
-if ($_{ENCODING} and ($ARGV[0] !~ /\.e$/)) {
+if ($_{ENCODING} and defined($ARGV[0]) and (-e $ARGV[0]) and ($ARGV[0] !~ /\.e$/)) {
 
     # escaped script not found or older than original script
     if ((not -e "$ARGV[0].e") or (-M "$ARGV[0].e" > -M $ARGV[0])) {
@@ -61,15 +80,15 @@ if ($_{ENCODING} and ($ARGV[0] !~ /\.e$/)) {
         }
 
         # escape script
-        if (system join ' ', $_{PERL5BIN}||$^X, "$_/$_{ENCODING}.pm", $ARGV[0], '>', "$ARGV[0].e") {
-            die "@{[__FILE__]}: $ARGV[0] had compilation errors.\n";
+        if (system join ' ', $_{PERL5BIN}, "$_/$_{ENCODING}.pm", $ARGV[0], '>', "$ARGV[0].e") {
+            die "$_/$_{ENCODING}.pm: $ARGV[0] had compilation errors.\n";
         }
     }
     $ARGV[0] .= '.e';
 }
 
 # execute escaped script
-exit system $_{PERL5BIN}||$^X, (map {"-I$_"} @{$_{PERL5LIB}}), @ARGV;
+exit system $_{PERL5BIN}, @_, (map {"-I$_"} @{$_{PERL5LIB}}), @ARGV;
 
 __END__
 
@@ -81,14 +100,14 @@ japerl - JPerl-again Perl (glocalization scripting environment)
 
 =head1 SYNOPSIS
 
-  japerl script.pl argv1 argv2 ...
+  japerl [switches] [--] [script.pl] [arguments]
 
 =head1 DESCRIPTION
 
 japerl provides glocalization script environment on both modern Perl
 and traditional Perl by using Sjis software family.
 
-This software is useful also for:
+This software is useful also for
 
 =over 4
 
@@ -106,11 +125,11 @@ This software is useful also for:
 
 =over 4
 
-=item 1 Install a member of Sjis software family.
+=item 1. Install a member of Sjis software family.
 
-=item 2 Copy japerl.bat and japerl.bat.conf to any directory.
+=item 2. Copy japerl.bat and japerl.bat.conf to any directory.
 
-=item 3 Customize japerl.bat.conf.
+=item 3. Customize japerl.bat.conf.
 
 =back
 
@@ -147,6 +166,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 =item * L<JPerl|http://www.cpan.org/authors/id/W/WA/WATANABE/> - Japanized Perl or Japanese Perl
 
 =item * L<Sjis software family|http://search.cpan.org/~ina/> - CPAN
+
+=item * L<Char|http://search.cpan.org/~ina/> - CPAN
 
 =item * L<The BackPAN|http://backpan.perl.org/authors/id/I/IN/INA/> - A Complete History of CPAN
 
