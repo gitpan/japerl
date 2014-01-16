@@ -22,7 +22,7 @@ undef @rem;
 # Copyright (c) 2013, 2014 INABA Hitoshi <ina@cpan.org>
 ######################################################################
 $VERSION =
-$VERSION = sprintf '%d.%02d', q$Revision: 0.02 $ =~ /(\d+)/oxmsg;
+$VERSION = sprintf '%d.%02d', q$Revision: 0.03 $ =~ /(\d+)/oxmsg;
 
 use 5.00503;
 use strict;
@@ -72,7 +72,7 @@ while ($ARGV[0] =~ /^-/) {
 if ($_{ENCODING} and defined($ARGV[0]) and (-e $ARGV[0]) and ($ARGV[0] !~ /\.e$/)) {
 
     # escaped script not found or older than original script
-    if ((not -e "$ARGV[0].e") or (-M "$ARGV[0].e" > -M $ARGV[0])) {
+    if ((not -e "$ARGV[0].e") or (-M "$ARGV[0].e" > -M $ARGV[0]) or (-s "$ARGV[0].e" == 0)) {
 
         # find source filter
         unless (($_) = grep {-e "$_/$_{ENCODING}.pm"} @{$_{PERL5LIB}}, @INC) {
@@ -80,7 +80,7 @@ if ($_{ENCODING} and defined($ARGV[0]) and (-e $ARGV[0]) and ($ARGV[0] !~ /\.e$/
         }
 
         # escape script
-        if (system join ' ', $_{PERL5BIN}, "$_/$_{ENCODING}.pm", $ARGV[0], '>', "$ARGV[0].e") {
+        if (system join ' ', $_{PERL5BIN}, (map {"-I$_"} @{$_{PERL5LIB}}), "$_/$_{ENCODING}.pm", $ARGV[0], '>', "$ARGV[0].e") {
             die "$_/$_{ENCODING}.pm: $ARGV[0] had compilation errors.\n";
         }
     }

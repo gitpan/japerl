@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name: japerl
 abstract: JPerl-again Perl (glocalization scripting environment)
-version: 0.02
+version: 0.03
 author:
   - INABA Hitoshi <ina@cpan.org>
 license: perl
