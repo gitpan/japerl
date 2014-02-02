@@ -22,7 +22,7 @@ undef @rem;
 # Copyright (c) 2013, 2014 INABA Hitoshi <ina@cpan.org>
 ######################################################################
 $VERSION =
-$VERSION = sprintf '%d.%02d', q$Revision: 0.03 $ =~ /(\d+)/oxmsg;
+$VERSION = sprintf '%d.%02d', q$Revision: 0.04 $ =~ /(\d+)/oxmsg;
 
 use 5.00503;
 use strict;
@@ -121,6 +121,8 @@ This software is useful also for
 
 =back
 
+May you do good magic with japerl.
+
 =head1 INSTALLATION
 
 =over 4
@@ -167,7 +169,9 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 =item * L<Sjis software family|http://search.cpan.org/~ina/> - CPAN
 
-=item * L<Char|http://search.cpan.org/~ina/> - CPAN
+=item * L<Strict::Perl|http://search.cpan.org/dist/Strict-Perl/> - CPAN
+
+=item * L<Modern::Open|http://search.cpan.org/dist/Modern-Open/> - CPAN
 
 =item * L<The BackPAN|http://backpan.perl.org/authors/id/I/IN/INA/> - A Complete History of CPAN
 

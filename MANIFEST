@@ -1,8 +1,12 @@
 japerl.bat
+japerl.bat.conf.sample
 japerl.bat.conf
+japerl.bat.conf.utf8
+japerl.bat.conf.eucjp
 Changes
+Makefile.PL
 pMakefile.PL
 MANIFEST
-test.pl
 README
 META.yml
+t/001_test.pl

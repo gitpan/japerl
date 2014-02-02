@@ -1,5 +1,14 @@
 Revision history for this software.
 
+0.04  2014-02-02 00:00:00
+  - add Makefile.PL
+  - rename japerl.bat.conf to japerl.bat.conf.sample
+  - add simple japerl.bat.conf
+  - add simple japerl.bat.conf.utf8
+  - add simple japerl.bat.conf.eucjp
+  - support Modern::Open
+  - created by INABA Hitoshi
+
 0.03  2014-01-16 00:00:00
   - overwrite if escaped script is 0 byte
   - enable PERL5LIB when escaping

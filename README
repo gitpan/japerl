@@ -17,6 +17,8 @@ DESCRIPTION
   - if you want to manage versions of library
   - if you want to share library with perls
 
+  May you do good magic with japerl.
+
 INSTALLATION
 
   1. Install a member of Sjis software family.
@@ -34,8 +36,11 @@ SEE ALSO
   Sjis software family - CPAN
   http://search.cpan.org/~ina/
 
-  Char - CPAN
-  http://search.cpan.org/~ina/
+  Strict::Perl - CPAN
+  http://search.cpan.org/dist/Strict-Perl/
+
+  Modern::Open - CPAN
+  http://search.cpan.org/dist/Modern-Open/
 
   BackPAN - A Complete History of CPAN
   http://backpan.perl.org/authors/id/I/IN/INA/

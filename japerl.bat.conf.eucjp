@@ -2,7 +2,7 @@
 +{
     PERL5BIN => 'C:/Perl518/bin/perl.exe',
     PERL5LIB => [ qw(lib) ],
-    ENCODING => 'Sjis',
+    ENCODING => 'EUCJP',
 #   PERL5OPT => '-MModern::Open', # for perl 5.00503, see http://search.cpan.org/dist/Modern-Open/
 }
 __END__
