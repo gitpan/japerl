@@ -9,4 +9,4 @@ pMakefile.PL
 MANIFEST
 README
 META.yml
-t/001_test.pl
+t/001_test.t

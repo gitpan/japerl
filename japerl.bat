@@ -22,7 +22,7 @@ undef @rem;
 # Copyright (c) 2013, 2014 INABA Hitoshi <ina@cpan.org>
 ######################################################################
 $VERSION =
-$VERSION = sprintf '%d.%02d', q$Revision: 0.04 $ =~ /(\d+)/oxmsg;
+$VERSION = sprintf '%d.%02d', q$Revision: 0.05 $ =~ /(\d+)/oxmsg;
 
 use 5.00503;
 use strict;
@@ -87,8 +87,13 @@ if ($_{ENCODING} and defined($ARGV[0]) and (-e $ARGV[0]) and ($ARGV[0] !~ /\.e$/
     $ARGV[0] .= '.e';
 }
 
+# The PERL5OPT environment variable (for passing command line arguments
+# to Perl) didn't work for more than a single group of options. [561]
+my $perl5opt = $ENV{PERL5OPT};
+local $ENV{PERL5OPT} = '';
+
 # execute escaped script
-exit system $_{PERL5BIN}, @_, (map {"-I$_"} @{$_{PERL5LIB}}), @ARGV;
+exit system $_{PERL5BIN}, @_, (map {"-I$_"} @{$_{PERL5LIB}}), $perl5opt, @ARGV;
 
 __END__
 
@@ -121,6 +126,11 @@ This software is useful also for
 
 =back
 
+You can get "JPerl5.6" on perl 5.00503 using Sjis software family, japerl.bat,
+warnings.pm, Modern::Open, and Fake::Our! Yay!!
+
+Today, you can also use Strict::Perl, Char and jacode.pl.
+
 May you do good magic with japerl.
 
 =head1 INSTALLATION
@@ -134,6 +144,55 @@ May you do good magic with japerl.
 =item 3. Customize japerl.bat.conf.
 
 =back
+
+=head1 japerl.bat.conf Sample on perl 5.00503
+
+  # Configuration file of japerl.bat
+  +{
+      PERL5BIN => 'C:/Perl/bin/perl.exe',
+      PERL5LIB => [ qw(lib) ],
+      ENCODING => 'Sjis',
+      PERL5OPT => '-MModern::Open',             # for perl 5.00503, see http://search.cpan.org/dist/Modern-Open/
+  #   PERL5OPT => '-MModern::Open -MFake::Our', #                   see http://search.cpan.org/dist/Fake-Our/
+  }
+  __END__
+
+=head1 japerl.bat.conf Sample
+
+  # Configuration file of japerl.bat on other version
+  +{
+      PERL5BIN => 'C:/Perl518/bin/perl.exe', # perl 5.018
+      PERL5LIB => [ qw(lib) ],
+      ENCODING => 'Sjis',
+  #   ENCODING => do { require FindBin; require "$FindBin::Bin/Char.pm"; Char::from_chcp_lang(); }, # autodetect sample
+  }
+  __END__
+
+=head1 File Allocation Sample
+
+  ./japerl.bat
+  ./japerl.bat.conf
+  ./lib/Sjis.pm
+  ./lib/Esjis.pm
+  ./lib/warnings.pm      --- on perl 5.00503
+  ./lib/Modern/Open.pm   --- on perl 5.00503
+  ./lib/Fake/Our.pm      --- on perl 5.00503
+  ./lib/Strict/Perl.pm   --- on demand
+  ./lib/Char.pm          --- on demand
+  ./lib/Stable/Module.pm --- on demand
+  ./lib/jacode.pl        --- on demand
+
+=head1 User Script Sample
+
+  #!japerl.bat
+  use Strict::Perl 2014.04;
+  use Stable::Module;
+  require 'jacode.pl';
+  $::VERSION = 0.01;
+  
+  print "Hello, parallel worlds!\n";
+  
+  __END__
 
 =head1 BUGS and LIMITATIONS
 
@@ -169,9 +228,17 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 =item * L<Sjis software family|http://search.cpan.org/~ina/> - CPAN
 
-=item * L<Strict::Perl|http://search.cpan.org/dist/Strict-Perl/> - CPAN
+=item * L<warnings|http://search.cpan.org/dist/Modern-Open/> - CPAN
 
 =item * L<Modern::Open|http://search.cpan.org/dist/Modern-Open/> - CPAN
+
+=item * L<Fake::Our|http://search.cpan.org/dist/Fake-Our/> - CPAN
+
+=item * L<Strict::Perl|http://search.cpan.org/dist/Strict-Perl/> - CPAN
+
+=item * L<Char|http://search.cpan.org/dist/Char/> - CPAN
+
+=item * L<jacode.pl|http://search.cpan.org/dist/jacode/> - CPAN
 
 =item * L<The BackPAN|http://backpan.perl.org/authors/id/I/IN/INA/> - A Complete History of CPAN
 

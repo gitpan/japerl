@@ -3,6 +3,8 @@
     PERL5BIN => 'C:/Perl518/bin/perl.exe',
     PERL5LIB => [ qw(lib) ],
     ENCODING => 'OldUTF8',
-#   PERL5OPT => '-MModern::Open', # for perl 5.00503, see http://search.cpan.org/dist/Modern-Open/
+#   ENCODING => do { require FindBin; require "$FindBin::Bin/Char.pm"; Char::from_chcp_lang(); }, # autodetect sample
+#   PERL5OPT => '-MModern::Open',             # for perl 5.00503, see http://search.cpan.org/dist/Modern-Open/
+#   PERL5OPT => '-MModern::Open -MFake::Our', # is deprecated,    see http://search.cpan.org/dist/Fake-Our/
 }
 __END__

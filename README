@@ -17,6 +17,11 @@ DESCRIPTION
   - if you want to manage versions of library
   - if you want to share library with perls
 
+  You can get "JPerl5.6" on perl 5.00503 using Sjis software family, japerl.bat,
+  warnings.pm, Modern::Open, and Fake::Our! Yay!!
+
+  Today, you can also use Strict::Perl, Char and jacode.pl.
+
   May you do good magic with japerl.
 
 INSTALLATION
@@ -36,11 +41,24 @@ SEE ALSO
   Sjis software family - CPAN
   http://search.cpan.org/~ina/
 
-  Strict::Perl - CPAN
-  http://search.cpan.org/dist/Strict-Perl/
+  warnings - CPAN
+  http://search.cpan.org/dist/Modern-Open/
 
   Modern::Open - CPAN
   http://search.cpan.org/dist/Modern-Open/
 
+  Fake::Our - CPAN
+  http://search.cpan.org/dist/Fake-Our/
+
+  Strict::Perl - CPAN
+  http://search.cpan.org/dist/Strict-Perl/
+
+  Char - CPAN
+  http://search.cpan.org/dist/Char/
+
+  jacode.pl - CPAN
+  http://search.cpan.org/dist/jacode/
+
   BackPAN - A Complete History of CPAN
   http://backpan.perl.org/authors/id/I/IN/INA/
+

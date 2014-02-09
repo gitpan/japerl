@@ -1,5 +1,10 @@
 Revision history for this software.
 
+0.05  2014-02-09 00:00:00
+  - PERL5OPT works for more than a single group of options
+  - add comment
+  - created by INABA Hitoshi
+
 0.04  2014-02-02 00:00:00
   - add Makefile.PL
   - rename japerl.bat.conf to japerl.bat.conf.sample
