@@ -4,10 +4,10 @@ use ExtUtils::MakeMaker;
 # the contents of the Makefile that is written.
 WriteMakefile(
     'NAME'             => 'japerl',
-    'VERSION_FROM'     => 'japerl.bat', # finds $VERSION
-    ($] >= 5.005 ?                      # Add these new keywords supported since 5.005
-      ('PREREQ_PM'     => {},           # e.g., Module::Name => 1.1
-       'ABSTRACT_FROM' => 'japerl.bat', # retrieve abstract from module
+    'VERSION_FROM'     => 'META.yml', # finds $VERSION
+    ($] >= 5.005 ?                    # Add these new keywords supported since 5.005
+      ('PREREQ_PM'     => {},         # e.g., Module::Name => 1.1
+       'ABSTRACT_FROM' => 'META.yml', # retrieve abstract from module
        'AUTHOR'        => 'ina <ina@cpan.org>',
       )
       :

@@ -89,6 +89,7 @@
 #   PERL_BADLANG           => undef,
 #   LOGDIR                 => $ENV{HOMEDRIVE} . $ENV{HOMEPATH},
 #   PATH                   => $ENV{PATH},
+#   PATHEXT                => $ENV{PATHEXT},
 #   PERL5DB                => "BEGIN{ require 'perl5db.pl' }",
 #   PERL5DB_THREADED       => undef,
 #   PERL5OPT               => $ENV{'PERL5OPT'},

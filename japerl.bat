@@ -21,10 +21,9 @@ undef @rem;
 #
 # Copyright (c) 2013, 2014 INABA Hitoshi <ina@cpan.org>
 ######################################################################
-$VERSION =
-$VERSION = sprintf '%d.%02d', q$Revision: 0.05 $ =~ /(\d+)/oxmsg;
 
 use 5.00503;
+$::VERSION = '0.06';
 use strict;
 $^W = 1;
 
@@ -54,7 +53,7 @@ if ($_{PERL5BIN} ne $^X) {
 }
 
 # get command-line switches
-while ($ARGV[0] =~ /^-/) {
+while ((defined $ARGV[0]) and ($ARGV[0] =~ /^-/)) {
     if ($ARGV[0] eq '--') {
         push @_, shift @ARGV;
         last;
@@ -89,7 +88,7 @@ if ($_{ENCODING} and defined($ARGV[0]) and (-e $ARGV[0]) and ($ARGV[0] !~ /\.e$/
 
 # The PERL5OPT environment variable (for passing command line arguments
 # to Perl) didn't work for more than a single group of options. [561]
-my $perl5opt = $ENV{PERL5OPT};
+my $perl5opt = (exists $ENV{PERL5OPT}) ? $ENV{PERL5OPT} : '';
 local $ENV{PERL5OPT} = '';
 
 # execute escaped script
@@ -101,7 +100,7 @@ __END__
 
 =head1 NAME
 
-japerl - JPerl-again Perl (glocalization scripting environment)
+japerl - JPerl-again Perl glocalization scripting environment
 
 =head1 SYNOPSIS
 
@@ -127,7 +126,7 @@ This software is useful also for
 =back
 
 You can get "JPerl5.6" on perl 5.00503 using Sjis software family, japerl.bat,
-warnings.pm, Modern::Open, and Fake::Our! Yay!!
+Modern::Open, and Fake::Our! Yay!!
 
 Today, you can also use Strict::Perl, Char and jacode.pl.
 
@@ -161,7 +160,7 @@ May you do good magic with japerl.
 
   # Configuration file of japerl.bat on other version
   +{
-      PERL5BIN => 'C:/Perl518/bin/perl.exe', # perl 5.018
+      PERL5BIN => 'C:/Perl520/bin/perl.exe', # perl 5.020
       PERL5LIB => [ qw(lib) ],
       ENCODING => 'Sjis',
   #   ENCODING => do { require FindBin; require "$FindBin::Bin/Char.pm"; Char::from_chcp_lang(); }, # autodetect sample
@@ -174,7 +173,6 @@ May you do good magic with japerl.
   ./japerl.bat.conf
   ./lib/Sjis.pm
   ./lib/Esjis.pm
-  ./lib/warnings.pm      --- on perl 5.00503
   ./lib/Modern/Open.pm   --- on perl 5.00503
   ./lib/Fake/Our.pm      --- on perl 5.00503
   ./lib/Strict/Perl.pm   --- on demand
@@ -185,7 +183,7 @@ May you do good magic with japerl.
 =head1 User Script Sample
 
   #!japerl.bat
-  use Strict::Perl 2014.04;
+  use Strict::Perl 2014.10;
   use Stable::Module;
   require 'jacode.pl';
   $::VERSION = 0.01;
@@ -227,8 +225,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 =item * L<JPerl|http://www.cpan.org/authors/id/W/WA/WATANABE/> - Japanized Perl or Japanese Perl
 
 =item * L<Sjis software family|http://search.cpan.org/~ina/> - CPAN
-
-=item * L<warnings|http://search.cpan.org/dist/Modern-Open/> - CPAN
 
 =item * L<Modern::Open|http://search.cpan.org/dist/Modern-Open/> - CPAN
 

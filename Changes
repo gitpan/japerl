@@ -1,5 +1,11 @@
 Revision history for this software.
 
+0.06  2014-08-19 00:00:00
+  - avoid: Could not eval '...' in japerl.bat: syntax error
+  - avoid: Use of uninitialized value at japerl.bat
+  - remove comment about warnings.pm
+  - created by INABA Hitoshi
+
 0.05  2014-02-09 00:00:00
   - PERL5OPT works for more than a single group of options
   - add comment
